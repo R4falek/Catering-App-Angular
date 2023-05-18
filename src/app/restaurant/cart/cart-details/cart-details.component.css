@@ -1,0 +1,43 @@
+.details-cont {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.dish-in-cart {
+    background-color: white;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+}
+
+h5, h2 {
+    margin-top: 0;
+    margin-bottom: 0px;
+    margin-right: 10px;
+}
+
+.cont {
+    background-color: gray;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+button {
+    background-color: rgba(64,77,171,255);
+    padding: 10px;
+    color: white;
+    width: 80px;
+    height: 40px;
+    border-radius: 10px;
+    margin-left: auto;
+    border: none;
+}
+
+button:hover {
+    background-color: gray;
+}

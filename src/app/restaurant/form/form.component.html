@@ -1,0 +1,41 @@
+<form class="form" #form="ngForm" (ngSubmit)="onSubmit(form.value, form)">
+    <div class="form-group">
+        <label for="name">Nazwa dania</label>
+        <input type="text" class="form-control" name="name" ngModel ngValue="myVar">
+        <span class="text-danger" *ngIf="name">
+            Nazwa dania is required
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="alterEgo">Typ kuchni</label>
+        <input type="text" class="form-control" name="typKuchni" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="alterEgo">Kategoria</label>
+        <input type="text" class="form-control" name="kategoria" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="alterEgo">Skladniki</label>
+        <input type="text" class="form-control" name="skladniki" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="alterEgo">Maksymalna liczba dania jednego dnia</label>
+        <input type="number" class="form-control" name="maxIloscJednegoDnia" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="alterEgo">Cena</label>
+        <input type="number" class="form-control" required name="cena" ngModel>
+        <span class="text-danger" *ngIf="price">
+            Cena is required
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="alterEgo">Opis</label>
+        <input type="text" class="form-control" name="opis" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="alterEgo">Zdjecia</label>
+        <input type="text" class="form-control" name="zdjecia" ngModel>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+</form>

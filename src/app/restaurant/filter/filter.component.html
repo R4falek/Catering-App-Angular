@@ -1,0 +1,23 @@
+<form class="form" #form="ngForm">
+    <div class="form-group">
+        <label for="alterEgo">Typ kuchni</label>
+        <input type="text" class="form-control" name="typKuchni" (input)="kitchenChanged(form.value)" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="alterEgo">Kategoria</label>
+        <input type="text" class="form-control" name="kategoria" (input)="categoryChanged(form.value)" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="alterEgo">Skladniki</label>
+        <input type="text" class="form-control" name="skladniki" (input)="ingridientsChanged(form.value)" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="alterEgo">Cena</label><br>
+        {{min  | currency: 'USD'}}
+        <mat-slider name="cena" [min]="min" [max]="max" discrete [step]="0.01">
+            <input matSliderStartThumb #minSlider (input)="minChange()">
+            <input matSliderEndThumb #maxSlider (input)="maxChange()">
+        </mat-slider>
+        {{max  | currency: 'USD'}}
+    </div>
+</form>

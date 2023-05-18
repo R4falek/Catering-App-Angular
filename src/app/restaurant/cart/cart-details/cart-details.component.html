@@ -1,0 +1,26 @@
+<div class="details-cont">
+    <div class="cont">
+        <div style="display: flex;">
+            <h1>Koszyk:</h1>
+            <button (click)="buy()">Kup</button>
+        </div>
+        <div class="dishes-in-cart-cont" *ngFor="let dish of dishService.orderedishes">
+            <div class="dish-in-cart" *ngIf="dish.orderedCount != 0">
+                <h5>{{dish.nazwaDania}}</h5>
+                <h5>Ilosc: {{dish.orderedCount}}</h5>
+                <h5>Cena: {{dish.cena * dish.orderedCount | currency: 'USD'}}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="cont">
+        <h1>Historia:</h1>
+        <div class="dishes-in-cart-cont" *ngFor="let dish of history">
+            <div class="dish-in-cart">
+                <h5>{{dish.nazwaDania}}</h5>
+                <h5>Ilosc: {{dish.liczbaZamowionych}}</h5>
+                <h5>Cena sumaryczna: {{dish.cenaSum  | currency: 'USD'}}</h5>
+                <h5>Data Zakupu: {{dish.dataZakupu.toLocaleString()}}</h5>
+            </div>
+        </div>
+    </div>
+</div>

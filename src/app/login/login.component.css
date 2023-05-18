@@ -1,0 +1,28 @@
+.login-cont {
+    background-color: gray;
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 50px;
+    color: black;
+}
+
+.cont {
+    background-color: rgba(64,77,171,255);
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    height: 70vh;
+    color: white;
+}

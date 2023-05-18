@@ -1,0 +1,26 @@
+<!-- <button (click)="formToggler()">Add dish</button>
+<app-form *ngIf="formToggle"
+    (addDishToList)="addDish($event)"> -->
+<!-- </app-form> -->
+<!-- <app-cart [dishes]="orderedishes"></app-cart> -->
+<button (click)="filterToggler()">Filter</button>
+<app-filter *ngIf="filterToggle" [allDishes]="dishes" (filteredDishes)="filterDishes($event)"></app-filter>
+<app-dishes [filterParameters]="filteredDishes">
+</app-dishes>
+
+
+
+
+<!-- <button (click)="formToggler()">Add dish</button>
+<app-form *ngIf="formToggle"
+    (addDishToList)="addDish($event)">
+</app-form>
+<app-cart [dishes]="orderedishes"></app-cart>
+<h1>{{ title }}</h1>
+<button (click)="filterToggler()">Filter</button>
+<app-filter *ngIf="filterToggle" [allDishes]="dishes" (filteredDishes)="filterDishes($event)"></app-filter>
+<app-dishes [dishes]="dishes" [filterParameters]="filteredDishes"
+    (addDishToCart)="addToCart($event)"
+    (removeDishFromCart)="removeFromCart($event)"
+    (removeDishFromList)="removeFromList($event)">
+</app-dishes> -->

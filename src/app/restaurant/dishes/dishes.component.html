@@ -1,0 +1,55 @@
+<div class="items-per-page-slider">
+    Ile dan na jednej stronie: 
+    <mat-slider style="z-index: 1;" name="cena" [min]="1" [max]="20" discrete [step]="1">
+        <input #slider value='4' matSliderThumb (input)="valueChangenge()">
+    </mat-slider>
+</div>
+<div class="dishes-container"
+    *ngFor="let dish of (dishes | KitchenPipe : filterParameters[0] 
+        | CategoryPipe : filterParameters[1] 
+        | IngredientsPipe : filterParameters[2]) 
+        | MinPricePipe : filterParameters[3] 
+        | MaxPricePipe : filterParameters[4]
+        | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: totalLength}"
+    [ngStyle]="{
+    'border': dish.mostExpensive ? '5px solid green' : dish.cheapest ? '5px solid red' : '5px solid gray',
+    'background-color': dish.maxIloscJednegoDnia - dish.orderedCount < 3 && dish.maxIloscJednegoDnia != 0 ? '#F4C76D' : 'gray'
+}">
+    <div style="width: 50%;">
+        <h3>{{ dish.nazwaDania | uppercase }}</h3>
+        <h5>{{ dish.typKuchni | uppercase }}</h5>
+        <h5>{{ dish.kategoria }}</h5>
+        <h5>Składniki:</h5>
+        <ul *ngIf="dish.skladniki[0] != ''">
+            <li *ngFor='let skladnik of dish.skladniki'>
+                <h5>{{ skladnik }}</h5>
+            </li>
+        </ul>
+        <h5>Cena: {{ dish.cena | currency: 'USD'}}</h5>
+        <h5>{{ dish.opis }}</h5>
+    </div>
+    <div class="img-buts-cont">
+        <div class="image-cont">
+            <img src={{dish.linkDoZdjec[0]}}>
+            <div routerLink="/dish/{{dish.nazwaDania}}" class="overlay">
+                <div class="text">More details</div>
+            </div>
+        </div>
+        <div *ngIf="authService.isLoggedIn && authService.user && !authService.user.ban">
+            <h5 #none style="color: red; margin-left: 16px;"
+                [ngStyle]="{'visibility': dish.maxIloscJednegoDnia == 0 ? 'visible' : 'hidden'}">Brak dania</h5>
+            <button #removeB (click)="remove(dish)" class="remove" [disabled]="dish.orderedCount <= 0">-</button>
+            {{ dish.orderedCount }}
+            <button #addB (click)="add(dish)" class="add"
+                [disabled]="dish.orderedCount >= dish.maxIloscJednegoDnia">+</button>
+        </div>
+    </div>
+    <div class="remove-grade-cont">
+        <button *ngIf="authService.user && authService.user.role.includes('admin')" class="remove-but" (click)="removeFromList(dish)">Remove</button>
+        <h5>Ocena: {{dish.sredniaOcen | number: '1.2-2'}}</h5>
+    </div>
+</div>
+<div style="display:flex; justify-content: center;align-items: center;flex-direction: column;">
+    <button class="dont-see-button" *ngIf="dishes.length == 0" (click)="resetPage()">Zaladuj</button>
+    <pagination-controls class="my-pagination" (pageChange)="page = $event"></pagination-controls>
+</div>

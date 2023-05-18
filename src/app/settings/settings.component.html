@@ -1,0 +1,36 @@
+<div class="cont">
+  <h2>Persistance</h2>
+  <select #session (change)="change(session.value)">
+    <option value="local">local</option>
+    <option value="session">Session</option>
+    <option value="none">None</option>
+  </select>
+</div>
+
+<div class="cont">
+  <h2>Users</h2>
+  <div class="user-cont" *ngFor="let user of authService.allUsers">
+    <div>
+      {{user.name}}<br>
+      Rola: {{user.role}}<br>
+      Dodaj lub usun role:
+      <select #session (change)="changeRole(user.id, session.value)">
+        <option value=""></option>
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+        <option value="manager">Manager</option>
+        <option value="manager, user">Manager i User</option>
+        <option value="manager, admin">Manager i Admin</option>
+        <option value="user, admin">User i Admin</option>
+      </select><br>
+      <div *ngIf="user.ban">
+        Odbanuj: 
+        <button (click)="toggleBan(user.id, user.ban)">Click</button>
+      </div>
+      <div *ngIf="!user.ban">
+        Zbanuj: 
+        <button (click)="toggleBan(user.id, user.ban)">Click</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<form class="form" #form="ngForm" (ngSubmit)="onSubmit(form.value, form)">
+    <div class="form-group">
+        <label for="name">Nickname</label>
+        <input type="text" class="form-control" name="nickname" ngModel>
+        <span class="text-danger" *ngIf="nickname">
+            Nickname is required
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="name">Data</label>
+        <input type="text" class="form-control" name="data" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="name">Opinia</label><br>
+        <textarea ngModel name="opinion" wrap="soft" style="height: 100px;width:100%;resize:none;color: black;"></textarea><br>
+        <span class="text-danger" *ngIf="opinionLength">
+            Opinia musi miec od 50 do 500 znakow
+        </span>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+</form>

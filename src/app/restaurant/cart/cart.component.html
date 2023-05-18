@@ -1,0 +1,10 @@
+<div class="cart-div">
+    <div>
+        <h2>Cart</h2>
+        <div style="display: flex; flex-direction: row;">
+            <h5>Dishes: {{this.dishService.dishesCount}}</h5>
+            <h5>Price: {{dishService.priceSum | currency: 'USD'}}</h5>
+        </div>
+    </div>
+    <button routerLink="/cart">Details</button>
+</div>

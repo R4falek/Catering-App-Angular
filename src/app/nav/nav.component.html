@@ -1,0 +1,33 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <div class="login-name" *ngIf="authService.isLoggedIn && authService.user">{{authService.user.name}}</div>
+      <a *ngIf="!authService.isLoggedIn" mat-list-item routerLink="/login">Log in</a>
+      <a *ngIf="!authService.isLoggedIn" mat-list-item routerLink="/signup">Sign up</a>
+      <a *ngIf="authService.isLoggedIn" mat-list-item routerLink="" (click)="logOut()">Log out</a>
+      <a mat-list-item routerLink="/ourOffer">Our offer</a>
+      <a *ngIf="authService.user && (authService.user.role.includes('admin') || authService.user.role.includes('manager'))" mat-list-item routerLink="/addDish">Add dish</a>
+      <a *ngIf="authService.user && authService.user.role.includes('admin')" mat-list-item routerLink="/settings">Settings</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <a routerLink="/main"><span>Catering-app</span></a>
+      <app-cart style="margin-left: auto;"></app-cart>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

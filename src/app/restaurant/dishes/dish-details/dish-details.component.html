@@ -1,0 +1,70 @@
+<div class="cont" *ngIf="dish !== undefined">
+    <div class="cont2">
+        <button class="back" routerLink="/ourOffer">Cofnij</button>
+        <div>
+            <h1>{{dish.nazwaDania | uppercase}}</h1>
+            <h3>Typ kuchni: {{ dish.typKuchni | uppercase }}</h3>
+            <h3>Kategoria: {{ dish.kategoria }}</h3>
+            <h3>Składniki:</h3>
+            <ul *ngIf="dish.skladniki[0] != ''">
+                <li *ngFor='let skladnik of dish.skladniki'>
+                    <h3 class="list">{{ skladnik }}</h3>
+                </li>
+            </ul>
+            <h3>Cena: {{ dish.cena | currency: 'USD'}}</h3>
+            <h3>Opis: {{ dish.opis }}</h3>
+        </div>
+        <div class="order-box">
+            Zamów:
+            <div class="order-box-cont">
+                <h5 #none style="color: red"
+                    [ngStyle]="{'visibility': dish.maxIloscJednegoDnia == 0 ? 'visible' : 'hidden'}">Brak dania</h5>
+                <div>
+                    <button #removeB (click)="remove(dish)" class="remove"
+                        [disabled]="dish.orderedCount <= 0">-</button>
+                    {{ dish.orderedCount }}
+                    <button #addB (click)="add(dish)" class="add"
+                        [disabled]="dish.orderedCount >= dish.maxIloscJednegoDnia">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="grading-box">
+            <h3 style="margin-bottom: 0">Ocena: {{dish.sredniaOcen | number: '1.2-2'}}</h3>
+            <h3 style="margin-bottom: 0">Liczba ocen: {{dish.oceny.length}}</h3>
+            <div>
+                <button class="star-but" (click)="grade(1, dish)"
+                    [ngStyle]="{'background-color': dish.twojaOcena != undefined && dish.twojaOcena >= 1 ? 'yellow' : 'lightgray'}">1</button>
+                <button class="star-but" (click)="grade(2, dish)"
+                    [ngStyle]="{'background-color': dish.twojaOcena != undefined && dish.twojaOcena >= 2 ? 'yellow' : 'lightgray'}">2</button>
+                <button class="star-but" (click)="grade(3, dish)"
+                    [ngStyle]="{'background-color': dish.twojaOcena != undefined && dish.twojaOcena >= 3 ? 'yellow' : 'lightgray'}">3</button>
+                <button class="star-but" (click)="grade(4, dish)"
+                    [ngStyle]="{'background-color': dish.twojaOcena != undefined && dish.twojaOcena >= 4 ? 'yellow' : 'lightgray'}">4</button>
+                <button class="star-but" (click)="grade(5, dish)"
+                    [ngStyle]="{'background-color': dish.twojaOcena != undefined && dish.twojaOcena >= 5 ? 'yellow' : 'lightgray'}">5</button>
+            </div>
+        </div>
+        <div class="grading-box">
+            <app-opinion-form></app-opinion-form>
+        </div>
+        <div class="grading-box" style="width: 280%;" *ngFor="let opinion of dish.opinia ">
+            <h3>Nickname: {{opinion.nickname}}</h3>
+            <h3>Data: {{opinion.date}}</h3>
+            <h5>Data: {{opinion.opinion}}</h5>
+        </div>
+    </div>
+    <div class="image-slider">
+        <button class="slider-but" (click)="left()"><</button>
+        <div class="images-window">
+            <div #images class="images-holder">
+                <div  *ngFor="let img of dish.linkDoZdjec">
+                    <div class="img-div">
+                        <img [src]="img">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button style="top:130px" class="slider-but" (click)="right()">></button>
+    </div>
+</div>
+

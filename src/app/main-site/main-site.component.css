@@ -1,0 +1,61 @@
+h3 {
+    margin: 2px;
+}
+
+.contact-cont {
+    background-color: gray;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+
+span {
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+app-map {
+    margin-left: auto;
+}
+
+.title-cont {
+    background-image: url('https://i.pinimg.com/originals/b7/09/f4/b709f45dbd4c3041ebe381145b1a7122.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 100px;
+    height: 60vw;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+h1{
+    font: italic 4em "Fira Sans", serif;
+    margin: 0;
+}
+
+h2 {
+    font: italic 3em "Fira Sans", serif;
+}
+
+.title {
+    margin-left: auto;
+    position: absolute;
+    right: 5vw;
+    top: 10vw;
+}
+
+.not-title {
+    margin-right: auto;
+    position: absolute;
+    left: 5vw;
+    bottom: 10vw;
+}

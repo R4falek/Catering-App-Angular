@@ -1,0 +1,23 @@
+<div class="cont">
+    <h1>
+        Login
+    </h1>
+    <div class="login-cont">
+        <form class="form" #form="ngForm" (ngSubmit)="onSubmit(form.value, form)">
+            <div class="form-group">
+                <label for="name">Adres email</label>
+                <input type="text" class="form-control" name="name" ngModel ngValue="myVar">
+            </div>
+            <div class="form-group">
+                <label for="name">Haslo</label>
+                <input type="password" class="form-control" name="password" ngModel ngValue="myVar">
+            </div>
+            <span class="text-danger" *ngIf="invalid">
+                <div style="max-width: 180px;">
+                    {{errorMessage}}
+                </div>
+            </span><br>
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </form>
+    </div>
+</div>
